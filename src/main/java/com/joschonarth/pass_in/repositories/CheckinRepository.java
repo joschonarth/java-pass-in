@@ -1,7 +1,10 @@
 package com.joschonarth.pass_in.repositories;
 
-import com.joschonarth.pass_in.domain.checkin.Checkin;
+import com.joschonarth.pass_in.domain.checkin.CheckIn;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CheckinRepository extends JpaRepository<Checkin, Integer> {
+import java.util.Optional;
+
+public interface CheckinRepository extends JpaRepository<CheckIn, Integer> {
+    Optional<CheckIn> findByAttendeeId(String attendeeId);
 }

@@ -6,7 +6,6 @@ import com.joschonarth.pass_in.domain.event.exceptions.EventNotFoudException;
 import com.joschonarth.pass_in.dto.event.EventIdDTO;
 import com.joschonarth.pass_in.dto.event.EventRequestDTO;
 import com.joschonarth.pass_in.dto.event.EventResponseDTO;
-import com.joschonarth.pass_in.repositories.AttendeeRepository;
 import com.joschonarth.pass_in.repositories.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,11 +18,11 @@ import java.util.List;
 public class EventService {
 
     private final EventRepository eventRepository;
-    private final AttendeeRepository attendeeRepository;
+    private final AttendeeService attendeeService;
 
     public EventResponseDTO getEventDetail(String eventId) {
         Event event = this.eventRepository.findById(eventId).orElseThrow(() -> new EventNotFoudException("Event not found with ID: " + eventId));
-        List<Attendee> attendeeList = this.attendeeRepository.findByEventId(eventId);
+        List<Attendee> attendeeList = this.attendeeService.getAllAttendeesFromEvent(eventId);
         return new EventResponseDTO(event, attendeeList.size());
     }
 
