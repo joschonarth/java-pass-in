@@ -1,7 +1,9 @@
 package com.joschonarth.pass_in.dto.event;
 
 import com.joschonarth.pass_in.domain.event.Event;
+import lombok.Getter;
 
+@Getter
 public class EventResponseDTO {
 
     EventDetailDTO event;
