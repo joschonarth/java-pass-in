@@ -2,6 +2,7 @@ package com.joschonarth.pass_in.services;
 
 import com.joschonarth.pass_in.domain.attendee.Attendee;
 import com.joschonarth.pass_in.domain.event.Event;
+import com.joschonarth.pass_in.domain.event.exceptions.EventNotFoudException;
 import com.joschonarth.pass_in.dto.event.EventIdDTO;
 import com.joschonarth.pass_in.dto.event.EventRequestDTO;
 import com.joschonarth.pass_in.dto.event.EventResponseDTO;
@@ -21,7 +22,7 @@ public class EventService {
     private final AttendeeRepository attendeeRepository;
 
     public EventResponseDTO getEventDetail(String eventId) {
-        Event event = this.eventRepository.findById(eventId).orElseThrow(() -> new RuntimeException("Event not found with ID: " + eventId));
+        Event event = this.eventRepository.findById(eventId).orElseThrow(() -> new EventNotFoudException("Event not found with ID: " + eventId));
         List<Attendee> attendeeList = this.attendeeRepository.findByEventId(eventId);
         return new EventResponseDTO(event, attendeeList.size());
     }
