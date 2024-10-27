@@ -1,6 +1,7 @@
 package com.joschonarth.pass_in.services;
 
 import com.joschonarth.pass_in.domain.attendee.Attendee;
+import com.joschonarth.pass_in.domain.attendee.exceptions.AttendeeAlreadyExistException;
 import com.joschonarth.pass_in.domain.checkin.CheckIn;
 import com.joschonarth.pass_in.dto.attendee.AttendeeDetails;
 import com.joschonarth.pass_in.dto.attendee.AttendeesListResponseDTO;
@@ -35,5 +36,15 @@ public class AttendeeService {
         }).toList();
 
         return new AttendeesListResponseDTO(attendeeDetailsList);
+    }
+
+    public void verifyAttendeeSubscription(String email, String eventId) {
+        Optional<Attendee> isAttendeeRegistered = this.attendeeRepository.findByEventIdAndEmail(eventId, email);
+        if (isAttendeeRegistered.isPresent()) throw new AttendeeAlreadyExistException("Attendee is already registered");
+    }
+
+    public Attendee registerAttendee(Attendee newAttendee) {
+        this.attendeeRepository.save(newAttendee);
+        return newAttendee;
     }
 }
