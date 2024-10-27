@@ -1,7 +1,7 @@
 package com.joschonarth.pass_in.services;
 
 import com.joschonarth.pass_in.domain.attendee.Attendee;
-import com.joschonarth.pass_in.domain.attendee.exceptions.AttendeeAlreadyExistException;
+import com.joschonarth.pass_in.domain.attendee.exceptions.AttendeeAlreadyExistsException;
 import com.joschonarth.pass_in.domain.attendee.exceptions.AttendeeNotFoundException;
 import com.joschonarth.pass_in.domain.checkin.CheckIn;
 import com.joschonarth.pass_in.dto.attendee.AttendeeBadgeResponseDTO;
@@ -9,7 +9,6 @@ import com.joschonarth.pass_in.dto.attendee.AttendeeDetails;
 import com.joschonarth.pass_in.dto.attendee.AttendeesListResponseDTO;
 import com.joschonarth.pass_in.dto.attendee.AttendeeBadgeDTO;
 import com.joschonarth.pass_in.repositories.AttendeeRepository;
-import com.joschonarth.pass_in.repositories.CheckinRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -43,7 +42,7 @@ public class AttendeeService {
 
     public void verifyAttendeeSubscription(String email, String eventId) {
         Optional<Attendee> isAttendeeRegistered = this.attendeeRepository.findByEventIdAndEmail(eventId, email);
-        if (isAttendeeRegistered.isPresent()) throw new AttendeeAlreadyExistException("Attendee is already registered");
+        if (isAttendeeRegistered.isPresent()) throw new AttendeeAlreadyExistsException("Attendee is already registered");
     }
 
     public Attendee registerAttendee(Attendee newAttendee) {
