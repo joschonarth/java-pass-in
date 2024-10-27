@@ -4,10 +4,10 @@
 
 ## 🛠️ Tecnologias Utilizadas
 
-- ☕ **Java 17**: Linguagem principal utilizada para desenvolver a aplicação.
+- ☕ **Java**: Linguagem principal utilizada para desenvolver a aplicação.
 - 🌱 **Spring Boot**: Framework que facilita o desenvolvimento da aplicação, incluindo suporte a RESTful APIs.
 - 📜 **Flyway**: Ferramenta para versionamento e migração de banco de dados, garantindo que o esquema do banco esteja atualizado.
-- 🔧 **Lombok**: Biblioteca que reduz a verbosidade do código, gerando automaticamente getters, setters e outros métodos úteis.
+- 🔧 **Lombok**: Biblioteca que reduz a verbosidade do código.
 - 🗃️ **Spring Data JPA**: Abstração que simplifica o acesso a dados, permitindo interações mais fáceis com o banco de dados.
 - 🗄️ **HSQLDB**: Banco de dados em memória utilizado para ambiente de desenvolvimento, permitindo testes rápidos e facilidade de configuração.
 
