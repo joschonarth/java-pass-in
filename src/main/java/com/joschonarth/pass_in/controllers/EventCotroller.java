@@ -1,5 +1,7 @@
 package com.joschonarth.pass_in.controllers;
 
+import com.joschonarth.pass_in.dto.attendee.AttendeeIdDTO;
+import com.joschonarth.pass_in.dto.attendee.AttendeeRequestDTO;
 import com.joschonarth.pass_in.dto.attendee.AttendeesListResponseDTO;
 import com.joschonarth.pass_in.dto.event.EventIdDTO;
 import com.joschonarth.pass_in.dto.event.EventRequestDTO;
@@ -33,6 +35,15 @@ public class EventCotroller {
         var uri = uriComponentsBuilder.path("/events/{id}").buildAndExpand(eventIdDTO.eventId()).toUri();
 
         return ResponseEntity.created(uri).body(eventIdDTO);
+    }
+
+    @PostMapping("/{eventId}/attendees")
+    public ResponseEntity<AttendeeIdDTO> registerParticipant(@PathVariable String eventId, @RequestBody AttendeeRequestDTO body, UriComponentsBuilder uriComponentsBuilder) {
+        AttendeeIdDTO attendeeIdDTO = this.eventService.registerAttendeeOnEvent(eventId, body);
+
+        var uri = uriComponentsBuilder.path("/attendees/{attendeeId}/badge").buildAndExpand(attendeeIdDTO.attendeeId()).toUri();
+
+        return ResponseEntity.created(uri).body(attendeeIdDTO);
     }
 
     @GetMapping("/attendees/{id}")
