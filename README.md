@@ -194,4 +194,15 @@
 
 🌐 **Exemplo de Requisição**: `http://localhost:8080/attendees/{attendeeId}/check-in`
 
-📄 **Exemplo de Resposta:** "`Check-in cancelado com sucesso!`"
+📄 **Exemplo de Resposta:** "Check-in cancelado com sucesso!"
+
+## 🤝 Contribuindo
+
+Se você deseja contribuir com o projeto, fique à vontade para abrir uma pull request ou uma issue.
+
+## 📞 Contato
+
+<div>
+    <a href="https://www.linkedin.com/in/joschonarth/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+    <a href="mailto:joschonarth@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+</div>

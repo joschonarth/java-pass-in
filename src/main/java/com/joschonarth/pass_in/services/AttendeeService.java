@@ -4,11 +4,13 @@ import com.joschonarth.pass_in.domain.attendee.Attendee;
 import com.joschonarth.pass_in.domain.attendee.exceptions.AttendeeAlreadyExistsException;
 import com.joschonarth.pass_in.domain.attendee.exceptions.AttendeeNotFoundException;
 import com.joschonarth.pass_in.domain.checkin.CheckIn;
+import com.joschonarth.pass_in.domain.event.exceptions.EventNotFoundException;
 import com.joschonarth.pass_in.dto.attendee.AttendeeBadgeResponseDTO;
 import com.joschonarth.pass_in.dto.attendee.AttendeeDetails;
 import com.joschonarth.pass_in.dto.attendee.AttendeesListResponseDTO;
 import com.joschonarth.pass_in.dto.attendee.AttendeeBadgeDTO;
 import com.joschonarth.pass_in.repositories.AttendeeRepository;
+import com.joschonarth.pass_in.repositories.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -23,12 +25,17 @@ public class AttendeeService {
 
     private final AttendeeRepository attendeeRepository;
     private final CheckInService checkInService;
+    private final EventRepository eventRepository;
 
     public List<Attendee> getAllAttendeesFromEvent(String eventId) {
         return this.attendeeRepository.findByEventId(eventId);
     }
 
     public AttendeesListResponseDTO getEventsAttendee(String eventId) {
+        if (!eventRepository.existsById(eventId)) {
+            throw new EventNotFoundException("Event not found with ID: " + eventId);
+        }
+
         List<Attendee> attendeeList = this.getAllAttendeesFromEvent(eventId);
 
         List<AttendeeDetails> attendeeDetailsList = attendeeList.stream().map(attendee -> {

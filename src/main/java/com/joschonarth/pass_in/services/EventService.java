@@ -3,7 +3,7 @@ package com.joschonarth.pass_in.services;
 import com.joschonarth.pass_in.domain.attendee.Attendee;
 import com.joschonarth.pass_in.domain.event.exceptions.EventFullException;
 import com.joschonarth.pass_in.domain.event.Event;
-import com.joschonarth.pass_in.domain.event.exceptions.EventNotFoudException;
+import com.joschonarth.pass_in.domain.event.exceptions.EventNotFoundException;
 import com.joschonarth.pass_in.dto.attendee.AttendeeIdDTO;
 import com.joschonarth.pass_in.dto.attendee.AttendeeRequestDTO;
 import com.joschonarth.pass_in.dto.event.EventIdDTO;
@@ -74,7 +74,7 @@ public class EventService {
     }
 
     private Event getEventById(String eventId) {
-        return this.eventRepository.findById(eventId).orElseThrow(() -> new EventNotFoudException("Event not found with ID: " + eventId));
+        return this.eventRepository.findById(eventId).orElseThrow(() -> new EventNotFoundException("Event not found with ID: " + eventId));
     }
 
     private String createSlug(String text) {
