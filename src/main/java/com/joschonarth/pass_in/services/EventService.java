@@ -42,6 +42,19 @@ public class EventService {
         return new EventIdDTO(newEvent.getId());
     }
 
+    public EventResponseDTO updateEvent(String eventId, EventRequestDTO eventDTO) {
+        Event event = this.getEventById(eventId);
+        event.setTitle(eventDTO.title());
+        event.setDetails(eventDTO.details());
+        event.setMaximumAttendees(eventDTO.maximumAttendees());
+        event.setSlug(this.createSlug(eventDTO.title()));
+
+        this.eventRepository.save(event);
+
+        List<Attendee> attendeeList = this.attendeeService.getAllAttendeesFromEvent(eventId);
+        return new EventResponseDTO(event, attendeeList.size());
+    }
+
     public AttendeeIdDTO registerAttendeeOnEvent(String eventId, AttendeeRequestDTO attendeeRequestDTO) {
         this.attendeeService.verifyAttendeeSubscription(attendeeRequestDTO.email(), eventId);
 

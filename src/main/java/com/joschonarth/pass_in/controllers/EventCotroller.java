@@ -37,6 +37,13 @@ public class EventCotroller {
         return ResponseEntity.created(uri).body(eventIdDTO);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<EventResponseDTO> updateEvent(@PathVariable String id, @RequestBody EventRequestDTO body) {
+        EventResponseDTO updatedEvent = this.eventService.updateEvent(id, body);
+
+        return ResponseEntity.ok(updatedEvent);
+    }
+
     @PostMapping("/{eventId}/attendees")
     public ResponseEntity<AttendeeIdDTO> registerParticipant(@PathVariable String eventId, @RequestBody AttendeeRequestDTO body, UriComponentsBuilder uriComponentsBuilder) {
         AttendeeIdDTO attendeeIdDTO = this.eventService.registerAttendeeOnEvent(eventId, body);
