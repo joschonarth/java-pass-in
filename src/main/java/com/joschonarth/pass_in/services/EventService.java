@@ -1,7 +1,7 @@
 package com.joschonarth.pass_in.services;
 
 import com.joschonarth.pass_in.domain.attendee.Attendee;
-import com.joschonarth.pass_in.domain.attendee.exceptions.EventFullException;
+import com.joschonarth.pass_in.domain.event.exceptions.EventFullException;
 import com.joschonarth.pass_in.domain.event.Event;
 import com.joschonarth.pass_in.domain.event.exceptions.EventNotFoudException;
 import com.joschonarth.pass_in.dto.attendee.AttendeeIdDTO;

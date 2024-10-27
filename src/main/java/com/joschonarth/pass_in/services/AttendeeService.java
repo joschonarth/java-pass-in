@@ -2,13 +2,17 @@ package com.joschonarth.pass_in.services;
 
 import com.joschonarth.pass_in.domain.attendee.Attendee;
 import com.joschonarth.pass_in.domain.attendee.exceptions.AttendeeAlreadyExistException;
+import com.joschonarth.pass_in.domain.attendee.exceptions.AttendeeNotFoundException;
 import com.joschonarth.pass_in.domain.checkin.CheckIn;
+import com.joschonarth.pass_in.dto.attendee.AttendeeBadgeResponseDTO;
 import com.joschonarth.pass_in.dto.attendee.AttendeeDetails;
 import com.joschonarth.pass_in.dto.attendee.AttendeesListResponseDTO;
+import com.joschonarth.pass_in.dto.attendee.AttendeeBadgeDTO;
 import com.joschonarth.pass_in.repositories.AttendeeRepository;
 import com.joschonarth.pass_in.repositories.CheckinRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -46,5 +50,14 @@ public class AttendeeService {
     public Attendee registerAttendee(Attendee newAttendee) {
         this.attendeeRepository.save(newAttendee);
         return newAttendee;
+    }
+
+    public AttendeeBadgeResponseDTO getAttendeeBadge(String attendeeId, UriComponentsBuilder uriComponentsBuilder) {
+        Attendee attendee = this.attendeeRepository.findById(attendeeId).orElseThrow(() -> new AttendeeNotFoundException("Attendee not found with ID: " + attendeeId));
+
+        var uri = uriComponentsBuilder.path("/attendees/{attendeeId}/check-in").buildAndExpand(attendeeId).toUri().toString();
+
+        AttendeeBadgeDTO attendeeBadgeDTO = new AttendeeBadgeDTO(attendee.getName(), attendee.getEmail(), uri, attendee.getEvent().getId());
+        return new AttendeeBadgeResponseDTO(attendeeBadgeDTO);
     }
 }
