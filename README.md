@@ -13,13 +13,13 @@
 
 ## ⚙️ Funcionalidades
 
-### Para Organizadores
+### 🎟️ Para Organizadores
 - 📝 **Cadastro de Evento**: Crie um novo evento.
 - 📊 **Visualização de Dados do Evento**: Acesse informações detalhadas de cada evento.
 - 📋 **Lista de Participantes**: Consulte a lista de participantes inscritos no evento.
 - ✏️ **Edição de Evento**: Edite as informações de um evento.
 
-### Para Participantes
+### 👤 Para Participantes
 - 🖊️️ **Inscrição no Evento**: Realize a inscrição no evento escolhido.
 - 🆔 **Emissão de Credencial**: Visualize e emita o crachá para check-in no evento.
 - ✅ **Check-in no Evento**: Realize o check-in do evento.
@@ -222,7 +222,9 @@ A API estará disponível em: [http://localhost:8080](http://localhost:8080)
 
 🌐 **Exemplo de Requisição**: `http://localhost:8080/attendees/{attendeeId}/check-in`
 
-📄 **Exemplo de Resposta:** "Check-in cancelado com sucesso!"
+📄 **Exemplo de Resposta:** 
+
+`Check-in cancelado com sucesso!`
 
 ## 🤝 Contribuindo
 
