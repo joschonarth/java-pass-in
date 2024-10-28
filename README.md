@@ -14,25 +14,51 @@
 ## ⚙️ Funcionalidades
 
 ### Para Organizadores
-- 📝 **Cadastro de Evento**: Crie um novo evento para disponibilizar inscrições.
+- 📝 **Cadastro de Evento**: Crie um novo evento.
 - 📊 **Visualização de Dados do Evento**: Acesse informações detalhadas de cada evento.
 - 📋 **Lista de Participantes**: Consulte a lista de participantes inscritos no evento.
-- ✏️ **Edição de Evento**: Edite as informações de um evento existente.
+- ✏️ **Edição de Evento**: Edite as informações de um evento.
 
 ### Para Participantes
-- 🖊️️ **Inscrição no Evento**: Realize a inscrição diretamente na página pública do evento.
+- 🖊️️ **Inscrição no Evento**: Realize a inscrição no evento escolhido.
 - 🆔 **Emissão de Credencial**: Visualize e emita o crachá para check-in no evento.
-- ✅ **Check-in no Evento**: Realize o check-in no dia do evento através de escaneamento da credencial.
-- ❌ **Cancelar Check-in**: Cancele o check-in de um participante no evento.
+- ✅ **Check-in no Evento**: Realize o check-in do evento.
+- ❌ **Cancelar Check-in**: Cancele o check-in do evento.
 
 ## ⚙️ Requisitos para Executar o Projeto
 
 - ☕ Java 11 ou superior
 - 📦 Maven 3.6+ instalado
 
+## 🚀 Como Rodar o Projeto
+
+📌 **1. Clone o repositório**:
+
+```bash
+git clone https://github.com/joschonarth/java-pass-in
+```
+
+📌 **2. Entre no diretório do projeto**:
+
+```bash
+cd java-pass-in
+```
+
+📌 **3. Compile e execute o projeto usando o Maven**:
+
+```bash
+mvn spring-boot:run
+```
+
+## 🌐 Acesso à API
+A API estará disponível em: [http://localhost:8080](http://localhost:8080)
+
+
 ## 🔗 Endpoints
 
-### 🎟️ Organizador do Evento
+### 🎟️ Para Organizador do Evento
+
+---
 
 ### 📝 Cadastro de Evento
 - **Descrição**: Cria um novo evento.
@@ -133,6 +159,8 @@
 ```
 
 ### 👤 Para Participante do Evento 
+
+---
 
 ### 🖊️ Inscrição no Evento
 - **Descrição**: Inscreve um novo participante em um evento.
